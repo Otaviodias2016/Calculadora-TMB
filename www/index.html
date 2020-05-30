@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width-bootstree, initial-scale-1.0">
+	<title> Calculadora MTB </title>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/shadow.css">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</head>
+<body>
+	<section class="container-fluid bg">
+		<section class="row justify-content-center">
+			<section class="col-12 col-sms-6 col-md-3">
+				<form class="form-container">
+
+
+				  <div class="form-group txt">
+				    <label for="num1">Peso:</label>
+				    <input type="number" class="form-control" id="num1" > 
+				  </div>
+
+				  <div class="form-group txt">
+				    <label for="num2">Altura:</label>
+				    <input type="number" class="form-control" id="num2" > 
+				  </div>
+
+				  <div class="form-group txt">
+				    <label for="num3">Idade:</label>
+				    <input type="number" class="form-control" id="num3" > 
+				  </div>
+				  
+				    <input type="radio" class="form-radio-input" name="m" id="m">
+				    <label class="form-radio-label" >Masculino</label>
+
+				 
+				    <input type="radio" class="form-radio-input" name="m" id="f">
+				    <label class="form-radio-label" >Feminino</label>
+
+					  <select id="sed" class="custom-select custom-select-sm">
+					  	  <option style="display: none;"></option>
+					  	  <option value="1">Sedentário</option>
+					  	  <option value="2">Levemente Ativo</option>
+					  	  <option value="3">Moderadamente Ativo</option>
+					  	  <option value="4">Muito Ativo</option>
+					  	  <option value="5">Super Ativo</option>
+					  </select>
+					  <br><br><br>
+
+					  <div class="form-group txt">
+					    <label for="res">Taxa Metabólica Basal:</label>
+					    <input type="text" class="form-control" id="res" readonly=""> 
+					  </div> 
+
+					    <input class="btn btn-outline-danger" type="submit" name="enviar" onclick="return text()">
+					    <br><br>
+
+					    <p id="oi"></p>
+				</form>
+
+				<script>
+
+					function text() 
+						{
+					
+							var num1=document.getElementById('num1')
+							 var num2=document.getElementById('num2')
+							  var num3=document.getElementById('num3')
+							   var masc=document.getElementById('m').checked
+							   var res=document.getElementById('res')
+							   var sed=document.querySelector('#sed').value
+							   var oi=document.querySelector('#oi')
+
+
+						 	if (masc){
+						 		var calc=66+(Number(num1.value)*9.6)+(Number(num2.value)*1.8)-(Number(num3.value)*4.7);
+						 	}
+						 	else {
+								var calc=655+(Number(num1.value)*9.6)+(Number(num2.value)*1.8)-(Number(num3.value)*4.7);
+
+						 	}		
+						 	res.value=calc.toFixed(2).replace('.',',')
+
+						 	switch (sed){
+						 		case '1': 
+
+						 			var ressed = calc*1.2
+						 			break
+						 		case '2':
+						 			var ressed = calc*1.375
+						 			break
+						 		case '3':
+						 			var ressed = calc*1.55
+						 			break
+						 		case '4':
+						 			var ressed = calc*1.725
+						 			break
+						 		case '5':
+						 			var ressed = calc*1.9
+						 			break
+						 	}	
+
+
+						 	oi.innerHTML = `Sua necessidade calorica diária é ${ressed.toFixed(2).replace('.',',')}` 
+
+						 	return false
+						}
+				</script>
+
+			</section>
+		</section>
+	</section>
+</body>
+</html>
